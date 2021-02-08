@@ -4,18 +4,22 @@ import Header from './Header';
 
 
 function App(props) {
-       const [notes, setNotes] = useState( [
+
+    const [notes, setNotes] = useState( [
         {
             name: "Встать с дивана",
-            done: false
+            done: false,
+            favorite: false
         },
         {
             name: "Покушать",
-            done: true
+            done: false,
+            favorite: false
         },
         {
             name: "Лечь снова на диван",
-            done: true
+            done: false,
+            favorite: false
         }
     ])
 
@@ -23,28 +27,43 @@ function App(props) {
 
     const [check, setCheck] = useState(false)
 
+
+
     const handleCheck = () => {
         setCheck(!check)
     }
 
+
+
     const deleteNotes = (i) => {
-        const filter = notes.filter((note,index) => {
+        const filtered = notes.filter((note,index) => {
             if (index === i) {
                 return false
             }
             return true
         })
+        setNotes(filtered)
+    }
+
+    const deleted = (i) => {
+           const filter = notes.filter((note) => {
+              return false
+           })
         setNotes(filter)
+        setText("")
+        setCheck(false)
     }
 
     const addNotes = () => {
-        setNotes([...notes,{
+        setNotes([...notes, {
             name: text,
-            done: check
+            done: check,
+            favorite: check
         }
-        ])
+            ])
         setText("")
         setCheck(false)}
+
 
     return (
         <div className="app">
@@ -57,15 +76,19 @@ function App(props) {
                 <input type="checkbox" checked={check} onChange={handleCheck}/>
                 <button onClick={addNotes}><a href="#">ДОБАВИТЬ</a></button>
             </div>
-            <div>{notes.map((note, index) => {
+            <div>
+                {notes.map((note, index) => {
                 return(
                     <div className="note" key={index}>
-                        <input type="checkbox" checked={note.done} onChange={() => {}}/>
+                        <input type="checkbox" checked={note.done} onChange={() => {}} onClick={note}/>
                         <span>{note.name}</span>
                         <div className="delete"><button onClick={() => deleteNotes(index)}>✕</button></div>
                     </div>
-                )
+                 )
             })}
+                <div className="input">
+                    <button onClick={deleted}>Стереть</button>
+                </div>
             </div>
         </div>
 

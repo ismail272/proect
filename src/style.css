@@ -38,6 +38,7 @@ button {
     font-size: 12px;
     font-weight: 600;
     outline: none;
+    cursor: pointer;
 }
  a {
      text-decoration: none;
