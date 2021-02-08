@@ -14,18 +14,23 @@
 }
 
 .input {
+    width: 800px;
     margin-top: 20px;
+    display: flex;
 }
 
-input .input{
+.input input{
     width: 200px;
     height: 30px;
-    border: slategray;
-    display: flex;
+    border: 1px slategray solid;
     height: 25px;
     margin-bottom: 20px;
+    display: flex;
 }
 
+.check input {
+    width: 20px;
+}
 
 button {
     width: 100px;
@@ -34,20 +39,13 @@ button {
     border: none;
     color: white;
     border-radius: 5px;
-    margin-left: 20px;
+    margin-left: 10px;
     font-size: 12px;
     font-weight: 600;
     outline: none;
     cursor: pointer;
 }
- a {
-     text-decoration: none;
-     color: white;
- }
 
- a:active {
-     color: silver;
- }
 
  .note {
      width: 275px;

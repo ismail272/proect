@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import Header from './Header';
+import InputText from "./inputText";
+import Note from "./note";
+import ButtonClean from "./buttonClean";
 
 
 
@@ -68,28 +71,9 @@ function App(props) {
     return (
         <div className="app">
             <Header />
-            <div className="input">
-                <input type="text"
-                       value={text}
-                       onChange={(e) => setText(e.target.value)}
-                       placeholder="Введите текст..."/>
-                <input type="checkbox" checked={check} onChange={handleCheck}/>
-                <button onClick={addNotes}><a href="#">ДОБАВИТЬ</a></button>
-            </div>
-            <div>
-                {notes.map((note, index) => {
-                return(
-                    <div className="note" key={index}>
-                        <input type="checkbox" checked={note.done} onChange={() => {}} onClick={note}/>
-                        <span>{note.name}</span>
-                        <div className="delete"><button onClick={() => deleteNotes(index)}>✕</button></div>
-                    </div>
-                 )
-            })}
-                <div className="input">
-                    <button onClick={deleted}>Стереть</button>
-                </div>
-            </div>
+            <InputText text={text} setText={setText} check={check} handleCheck={handleCheck} addNotes={addNotes} setNotes={setNotes} />
+            <Note notes={notes} deleteNotes={deleteNotes} />
+            <ButtonClean deleted={deleted} />
         </div>
 
     );
